@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nakama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nakama
+  template:
+    metadata:
+      labels:
+        app: nakama
+    spec:
+      containers:
+      - name: nakama
+        image: heroiclabs/nakama:latest
+        ports:
+        - containerPort: 7350
+        - containerPort: 7351
+        - containerPort: 7349
+        - containerPort: 7348
+        env:
+        - name: NAKAMA_SERVER_KEY
+          value: "defaultkey"
+        - name: NAKAMA_SESSION_ENCRYPTION_KEY
+          value: "defaultencryptionkey"
+        - name: NAKAMA_RUNTIME_HTTP_KEY
+          value: "defaulthttpkey"
+        - name: NAKAMA_SESSION_TOKEN_EXPIRY_SEC
+          value: "60"
+        - name: NAKAMA_SESSION_REFRESH_TOKEN_EXPIRY_SEC
+          value: "3600"
+        - name: NAKAMA_DATA_DIR
+          value: "/nakama/data"
+        - name: NAKAMA_DATABASE_ADDRESS
+          value: "root@localhost:26257"
+        volumeMounts:
+        - name: nakama-data
+          mountPath: /nakama/data
+      volumes:
+      - name: nakama-data
+        persistentVolumeClaim:
+          claimName: nakama-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nakama-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
