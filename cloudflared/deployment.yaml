@@ -29,6 +29,7 @@ spec:
         - containerPort: 8080
         - containerPort: 443
         - containerPort: 80
+      volumes:
       - name: cloudflare-tunnel-credentials
         configMap:
           name: cloudflare-tunnel-credentials
