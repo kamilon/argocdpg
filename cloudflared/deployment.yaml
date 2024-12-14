@@ -22,7 +22,7 @@ spec:
         - --no-autoupdate
         - --metrics=http:8080/metrics
         volumeMounts:
-        - name: cloudflare-tunnel-credentials
+        - name: cloudflare-tunnel-cred
           mountPath: /etc/cloudflared
           subPath: credentials.json
         ports:
@@ -30,6 +30,6 @@ spec:
         - containerPort: 443
         - containerPort: 80
       volumes:
-      - name: cloudflare-tunnel-credentials
+      - name: cloudflare-tunnel-cred
         configMap:
           name: cloudflare-tunnel-credentials
