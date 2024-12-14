@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:latest
+        args:
+        - tunnel
+        - run
+        - /etc/cloudflared/credentials.json
+        - --no-autoupdate
+        - --metrics=http:8080/metrics
+        volumeMounts:
+        - name: cloudflare-tunnel-credentials
+          mountPath: /etc/cloudflared
+          subPath: credentials.json
+        ports:
+        - containerPort: 8080
+        - containerPort: 443
+        - containerPort: 80
+      - name: cloudflare-tunnel-credentials
+        configMap:
+          name: cloudflare-tunnel-credentials
