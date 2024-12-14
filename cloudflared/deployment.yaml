@@ -31,5 +31,5 @@ spec:
         - containerPort: 80
       volumes:
       - name: cloudflare-tunnel-cred
-        configMap:
-          name: cloudflare-tunnel-credentials
+        secret:
+          secretName: cloudflare-tunnel-credentials
