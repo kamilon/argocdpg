@@ -18,13 +18,13 @@ spec:
         args:
         - tunnel
         - run
+        - nakama-tunnel
         - /etc/cloudflared/credentials.json
         - --no-autoupdate
         - --metrics=http:8080/metrics
         volumeMounts:
         - name: cloudflare-tunnel-cred
           mountPath: /etc/cloudflared
-          subPath: credentials.json
         ports:
         - containerPort: 8080
         - containerPort: 443
