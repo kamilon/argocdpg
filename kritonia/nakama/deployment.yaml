@@ -117,9 +117,11 @@ spec:
   selector:
     app: nakama
   ports:
-    - protocol: TCP
+    - name: consoleport
+      protocol: TCP
       port: 7351
       targetPort: 7351
-    - protocol: TCP
+    - name: grpcport
+      protocol: TCP
       port: 7350
       targetPort: 7350
