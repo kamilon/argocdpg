@@ -120,3 +120,6 @@ spec:
     - protocol: TCP
       port: 7351
       targetPort: 7351
+    - protocol: TCP
+      port: 7350
+      targetPort: 7350
