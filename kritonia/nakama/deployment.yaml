@@ -127,5 +127,5 @@ spec:
       targetPort: 7350
     - name: grpcport
       protocol: TCP
-      port: 7351
-      targetPort: 7351
+      port: 7349
+      targetPort: 7349
