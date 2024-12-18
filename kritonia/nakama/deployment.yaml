@@ -122,13 +122,14 @@ spec:
       protocol: TCP
       port: 7351
       targetPort: 7351
+      nodePort: 37351
     - name: httpport
       protocol: TCP
       port: 7350
       targetPort: 7350
-      nodePort: 7350
+      nodePort: 37350
     - name: grpcport
       protocol: TCP
       port: 7349
       targetPort: 7349
-      nodePort: 7349
+      nodePort: 37349
