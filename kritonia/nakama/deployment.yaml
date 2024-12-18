@@ -116,6 +116,7 @@ metadata:
 spec:
   selector:
     app: nakama
+  type: NodePort
   ports:
     - name: consoleport
       protocol: TCP
@@ -125,7 +126,9 @@ spec:
       protocol: TCP
       port: 7350
       targetPort: 7350
+      nodePort: 7350
     - name: grpcport
       protocol: TCP
       port: 7349
       targetPort: 7349
+      nodePort: 7349
